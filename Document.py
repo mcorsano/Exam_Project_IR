@@ -1,4 +1,6 @@
 
+from gensim.parsing.preprocessing import STOPWORDS
+
 class Document :
 
     def __init__(self, id, title, author, summary) -> None :
@@ -31,3 +33,20 @@ class Document :
 
     def get_terms(self) :
         return self._terms
+
+    def remove_stopwords(self) :
+        for word in self._terms :
+            if word.get_term() in STOPWORDS :
+                self._terms.remove(word)
+                
+    def normalize(self) :
+        for term in self._terms :
+            term.to_lower()   
+    
+    def stem(self) :
+        for term in self._terms :
+            term.to_stem()
+
+    def lemmatize(self) :
+        for term in self._terms :
+            term.to_lemma()

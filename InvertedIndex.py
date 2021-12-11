@@ -20,15 +20,12 @@ class InvertedIndex :
 
 
     def intersection(self, term1, term2) :
-        posting_l1 = sorted(term1.get_posting_list())
-        posting_l2 = sorted(term2.get_posting_list())
+        posting_l1 = term1.get_posting_list()
+        posting_l2 = term2.get_posting_list()
         intersection_posting_l = []
       
         i = 0
         j = 0
-        print(posting_l1)
-        print(posting_l2)
-
         while (i < len(posting_l1) and j < len(posting_l2)) :
             if (posting_l1[i] == posting_l2[j]) :
                 intersection_posting_l.append(posting_l1[i])
@@ -44,8 +41,8 @@ class InvertedIndex :
 
 
     def union(self, term1, term2) :
-        posting_l1 = sorted(term1.get_posting_list())
-        posting_l2 = sorted(term2.get_posting_list())
+        posting_l1 = term1.get_posting_list()
+        posting_l2 = term2.get_posting_list()
         union_posting_l = []
 
         i = 0
@@ -72,8 +69,8 @@ class InvertedIndex :
 
    
     def difference(self, term1, term2) :
-        posting_l1 = sorted(term1.get_posting_list())
-        posting_l2 = sorted(term2.get_posting_list())
+        posting_l1 = term1.get_posting_list()
+        posting_l2 = term2.get_posting_list()
         difference_posting_l = []
 
         difference_posting_l = posting_l1.copy()

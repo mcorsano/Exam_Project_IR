@@ -1,4 +1,12 @@
 
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+
+porter = PorterStemmer()
+lemmatizer = WordNetLemmatizer()
+
+
+
 class Term :
 
     def __init__(self, term) -> None :
@@ -24,4 +32,14 @@ class Term :
         posting_list = []
         for doc in self._docs :
             posting_list.append(doc.get_id())
-        return posting_list
+        return sorted(posting_list)
+
+    def to_lower(self) :
+        self._term = self._term.lower()
+
+    def to_stem(self) :
+        self._term = porter.stem(self._term)
+
+    def to_lemma(self) :
+        self._term = lemmatizer.lemmatize(self._term)
+

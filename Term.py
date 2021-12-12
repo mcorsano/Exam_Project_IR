@@ -33,3 +33,5 @@ class Term :
             posting_list.append(doc.get_id())
         return sorted(posting_list)
 
+
+    

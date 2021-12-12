@@ -1,5 +1,7 @@
 
 from Term import *
+from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
 
 
 class InvertedIndex :
@@ -7,8 +9,8 @@ class InvertedIndex :
 
     def find(self, query, documents, terms) :   # i documenti forse non servono
         words = query.split()
-        term1 = terms.get(words[0])
-        term2 = terms.get(words[2])
+        term1 = terms.get(lemmatizer.lemmatize(words[0].lower()))
+        term2 = terms.get(lemmatizer.lemmatize(words[2].lower()))
         operator = words[1]
 
         if (operator == 'AND') :

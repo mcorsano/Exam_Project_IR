@@ -9,8 +9,10 @@ class InvertedIndex :
 
     def find(self, query, documents, terms) :   # i documenti forse non servono
         words = query.split()
-        term1 = terms.get(lemmatizer.lemmatize(words[0].lower()))
-        term2 = terms.get(lemmatizer.lemmatize(words[2].lower()))
+        word1 = lemmatizer.lemmatize(words[0].lower())
+        word2 = lemmatizer.lemmatize(words[2].lower())
+        term1 = terms.get(word1)
+        term2 = terms.get(word2)
         operator = words[1]
 
         if (operator == 'AND') :
@@ -82,3 +84,4 @@ class InvertedIndex :
         
         return difference_posting_l
 
+  

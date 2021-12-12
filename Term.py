@@ -15,6 +15,14 @@ class Term :
         return str(self)
 
 
+    def __eq__(self, other) -> bool:
+        return isinstance(other, Term) and other._term == self._term
+
+
+    def __hash__(self) -> int:
+        return hash(self._term)
+
+
     def get_docs(self) :
         return self._docs
 
@@ -34,4 +42,11 @@ class Term :
         return sorted(posting_list)
 
 
-    
+    def get_positional_index(self) :
+        positional_index = {}
+        posting_list = self._docs 
+        for posting in posting_list :
+            positional_index[posting] = posting.get_term_positions(self._term)      ### fix this ###
+
+
+

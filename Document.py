@@ -2,6 +2,7 @@
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
 from gensim.parsing.preprocessing import STOPWORDS
+from collections import defaultdict
 import re
 
 
@@ -13,7 +14,7 @@ class Document :
         self._title = title
         self._author = author
         self._summary = summary
-        self._terms = []
+        self._terms = {}
 
 
     def __str__(self) :
@@ -40,12 +41,16 @@ class Document :
         return self._summary
 
 
-    def add_term(self, term) :
-        self._terms.append(term)
-
-
     def get_terms(self) :
         return self._terms
+
+
+    def add_term(self, term, index) :
+        self._terms[term].append(index)
+
+    
+    def add_new_term(self, new_term, index) :
+        self._terms[new_term] = [index]
 
 
     def tokenize(self) :
@@ -63,6 +68,10 @@ class Document :
 
     def lemmatize(self) :
         self._summary = [lemmatizer.lemmatize(word) for word in self._summary]
+
+
+    def get_term_positions(self, term) :
+        return self._terms[term]
 
 
 

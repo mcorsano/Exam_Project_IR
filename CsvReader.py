@@ -1,8 +1,8 @@
 
 import csv
+from PostingList import PostingList
 from Term import *
 from Document import *
-from gensim.parsing.preprocessing import STOPWORDS
 
 
 class CsvReader :
@@ -10,7 +10,7 @@ class CsvReader :
 
     def __init__(self, filename) -> None :
         self._filename = filename
-        self._documents = []
+        self._documents = {}
         self._terms = {}
 
 
@@ -23,21 +23,30 @@ class CsvReader :
                 author = row[2]
                 summary = row[3]
                 document = Document(id, title, author, summary)
-                self._documents.append(document)
+                self._documents[document.get_id()] = document
                 document.tokenize()
-                document.remove_stopwords() 
+                #document.remove_stopwords() 
                 document.normalize()
                 document.lemmatize()
 
+                index = 0 
                 for el in document.get_summary() :
                     if el in self._terms.keys() :
                         term = self._terms.get(el)
+                        if term in document.get_terms().keys() :
+                            document.add_term(term, index)
+                        else :
+                            document.add_new_term(term, index)
+                            term.add_doc(document)
                     else :
                         term = Term(el)
-                        self._terms[el] = term    
-                    document.add_term(term)
+                        self._terms[el] = term
+                        document.add_new_term(term,index)
 
-                    term.add_doc(document)
+                        term.add_doc(document)
+                    
+                    index += 1  
+
 
 
 

@@ -16,11 +16,11 @@ class BooleanRetrievalSystem :
         terms = reader.get_all_terms()
        
 
-        doc = documents[1]
+        doc = documents[20663735]
         print(doc.get_summary())
         print(doc.get_terms())
 
 
-        print(search_algorithm.find(query, documents, terms))   #i documenti forse non servono
+        print(search_algorithm.find(query, documents, terms))  
 
 

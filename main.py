@@ -1,11 +1,12 @@
 
 from BooleanRetrievalSystem import *
 from InvertedIndex import *
+from PhraseQuery import PhraseQuery
 
 
 file_name = 'corpus.csv'
 retrieval_model = BooleanRetrievalSystem(file_name)
-documents = retrieval_model.search('Pino NOT otter', InvertedIndex()) # BooleanRetrieval()) 
-
+#documents_query1 = retrieval_model.search('Pino OR otter', InvertedIndex()) # BooleanRetrieval()) 
+documents_query2 = retrieval_model.search('six years bear', PhraseQuery())
 
 

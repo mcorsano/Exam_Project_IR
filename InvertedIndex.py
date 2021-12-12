@@ -1,7 +1,9 @@
 
 from Term import *
 
+
 class InvertedIndex :
+
 
     def find(self, query, documents, terms) :   # i documenti forse non servono
         words = query.split()
@@ -39,7 +41,6 @@ class InvertedIndex :
         return intersection_posting_l
 
 
-
     def union(self, term1, term2) :
         posting_l1 = term1.get_posting_list()
         posting_l2 = term2.get_posting_list()
@@ -65,7 +66,6 @@ class InvertedIndex :
             union_posting_l.extend(posting_l1[i:len(posting_l1)])
 
         return union_posting_l
-
 
    
     def difference(self, term1, term2) :

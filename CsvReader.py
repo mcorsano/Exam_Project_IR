@@ -2,13 +2,17 @@
 import csv
 from Term import *
 from Document import *
+from gensim.parsing.preprocessing import STOPWORDS
+
 
 class CsvReader :
+
 
     def __init__(self, filename) -> None :
         self._filename = filename
         self._documents = []
         self._terms = {}
+
 
     def read(self) :
         with open(self._filename, 'r') as csvfile:
@@ -20,19 +24,21 @@ class CsvReader :
                 summary = row[3]
                 document = Document(id, title, author, summary)
                 self._documents.append(document)
+                document.tokenize()
+                document.remove_stopwords() 
+                document.normalize()
+                document.lemmatize()
 
-                for el in summary.split() :
+                for el in document.get_summary() :
                     if el in self._terms.keys() :
                         term = self._terms.get(el)
                     else :
                         term = Term(el)
-                        self._terms[el] = term    # QUESTO NON CAPISCO IL SENSO
+                        self._terms[el] = term    
                     document.add_term(term)
 
                     term.add_doc(document)
 
-            self.normalize_docs()
-            
 
 
     def get_all_documents(self) :
@@ -43,12 +49,7 @@ class CsvReader :
         return self._terms 
 
     
-    def normalize_docs(self) :
-        for doc in self._documents :
-            doc.remove_stopwords()
-            doc.normalize()
-            #doc.stem()
-            doc.lemmatize()
+
 
 
 

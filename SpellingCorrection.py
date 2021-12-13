@@ -21,7 +21,7 @@ class SpellingCorrection :
 
 
     def correct_spell(self, all_terms, query, spelling_alg) :
-        if (w for w in query if '*' in w) :
+        if (self.check_wildcard(query)) :
             return query
         else:               
             all_words = list(all_terms.keys())
@@ -37,7 +37,14 @@ class SpellingCorrection :
                     query[i] = correct_word
             return query
 
-    
+
+
+    def check_wildcard(self, query) :
+        for i in range(len(query)) :
+            word = list(query[i])
+            if '*' in word :
+                return True
+        return False
                 
 
 

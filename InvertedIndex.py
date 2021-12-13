@@ -61,7 +61,7 @@ class InvertedIndex :
                 union_posting_l.append(posting_l1[i])
                 i += 1
             else :
-                union_posting_l.append(posting_l2[posting_l2])
+                union_posting_l.append(posting_l2[j])
                 j += 1
 
         if (i >= len(posting_l1)) :

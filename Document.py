@@ -9,10 +9,9 @@ import re
 class Document :
 
 
-    def __init__(self, id, title, author, summary) -> None :
-        self._id = int(id)
+    def __init__(self, id, title, summary) -> None :
+        self._id = int(id)    ### FORSE QUA è ID SENZA INT(ID) ###
         self._title = title
-        self._author = author
         self._summary = summary
         self._terms = {}
 
@@ -31,10 +30,6 @@ class Document :
 
     def get_title(self) :
         return self._title
-
-
-    def get_author(self) :
-        return self._author
 
 
     def get_summary(self) :

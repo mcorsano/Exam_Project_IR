@@ -15,14 +15,13 @@ class CsvReader :
 
 
     def read(self) :
-        with open(self._filename, 'r') as csvfile:
+        with open(self._filename, 'r', encoding="utf8") as csvfile:
             csv_reader = csv.reader(csvfile, delimiter = ';')
             for row in csv_reader :
                 id = row[0]
                 title = row[1]
-                author = row[2]
-                summary = row[3]
-                document = Document(id, title, author, summary)
+                summary = row[2]
+                document = Document(id, title, summary)
                 self._documents[document.get_id()] = document
                 document.tokenize()
                 #document.remove_stopwords() 

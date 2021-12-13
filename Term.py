@@ -15,11 +15,15 @@ class Term :
         return str(self)
 
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other) -> bool :
         return isinstance(other, Term) and other._term == self._term
 
 
-    def __hash__(self) -> int:
+    def __gt__(self, other) -> bool :
+        return isinstance(other, Term) and other._term < self._term
+
+
+    def __hash__(self) -> int :
         return hash(self._term)
 
 

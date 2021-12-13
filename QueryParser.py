@@ -3,6 +3,7 @@
 from InvertedIndex import *
 from PhraseQuery import *
 from SpellingCorrection import *
+from Wilcard import Wilcard
 
 
 class QueryParser :
@@ -10,7 +11,10 @@ class QueryParser :
 
     def assign_algorithm(self, query) :
         operators = ['AND', 'OR', 'NOT']
-        if (self.check_operators(operators, query)) :   ### MANCANO LE WILCARDS ###
+        if (w for w in query if '*' in w) :
+            print('ho trovato una wildcard')
+            return Wilcard()
+        elif (self.check_operators(operators, query)) :   ### MANCANO LE WILCARDS ###
             return PhraseQuery()
         else :
             return InvertedIndex()

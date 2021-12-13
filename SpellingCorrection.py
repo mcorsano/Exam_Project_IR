@@ -21,7 +21,7 @@ class SpellingCorrection :
 
 
     def correct_spell(self, all_terms, query, spelling_alg) :
-        if ('*' in query) :
+        if (w for w in query if '*' in w) :
             return query
         else:               
             all_words = list(all_terms.keys())

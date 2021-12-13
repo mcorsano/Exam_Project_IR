@@ -9,13 +9,13 @@ class PhraseQuery :
 
 
     def find(self, query, documents, terms) :
-        query_words = query#.split()
+        query_words = query
         index = 0
         intermediate_dict = {}
 
         while (index < len(query_words)-1) :
-            word1 = lemmatizer.lemmatize(query_words[index].lower())
-            word2 = lemmatizer.lemmatize(query_words[index+1].lower())
+            word1 = query_words[index]
+            word2 = query_words[index+1]
             term1 = terms.get(word1)
             term2 = terms.get(word2)
 

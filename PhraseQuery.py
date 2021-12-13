@@ -9,7 +9,7 @@ class PhraseQuery :
 
 
     def find(self, query, documents, terms) :
-        query_words = query.split()
+        query_words = query#.split()
         index = 0
         intermediate_dict = {}
 
@@ -22,7 +22,6 @@ class PhraseQuery :
             posting_l1 = term1.get_posting_list()
             posting_l2 = term2.get_posting_list()
 
-            position_of_first = []
             i = 0
             j = 0
             while (i < len(posting_l1) and j < len(posting_l2)) :
@@ -38,8 +37,6 @@ class PhraseQuery :
                                 intermediate_dict[doc] = [positions_1[k]]
                             else :
                                 intermediate_dict[doc].append(positions_1[k])
-                            #print('trovato')
-                            #position_of_first.append(positions_1[k])
                             k += 1
                             l += 1
                         elif (positions_1[k] < (positions_2[l] - 1)) :
@@ -52,8 +49,7 @@ class PhraseQuery :
                     i += 1
                 else :
                     j += 1
-            #print(position_of_first)
-            #print(intermediate_dict)
+            #print(intermediate_dict)              ### PHRASE QUERIES DA SISTEMARE PERCHè PRENDE SOLO UNA OCCORRENZA IN UN SINGOLO DOC ###
 
 
                 

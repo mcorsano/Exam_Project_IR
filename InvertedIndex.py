@@ -8,7 +8,7 @@ class InvertedIndex :
 
 
     def find(self, query, documents, terms) :   # i documenti forse non servono
-        words = query.split()
+        words = query#.split()
         word1 = lemmatizer.lemmatize(words[0].lower())
         word2 = lemmatizer.lemmatize(words[2].lower())
         term1 = terms.get(word1)

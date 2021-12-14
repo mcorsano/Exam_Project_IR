@@ -8,25 +8,31 @@ class InvertedIndex :
 
 
     def find(self, query, documents, terms) :   # i documenti forse non servono
-        words = query#.split()
+        words = query
+
         word1 = words[0]
-        word2 = words[2]
-        term1 = terms.get(word1)
-        term2 = terms.get(word2)
-        operator = words[1]
+        previous_pl = terms.get(word1).get_posting_list()
+        for i in range(1, len(query), 2) :
+            word2 = words[i+1]
+            term2 = terms.get(word2)
+            operator = words[i]
 
-        if (operator == 'AND') :
-            return self.intersection(term1, term2)
-        elif (operator == 'OR') :
-            return self.union(term1, term2)
-        elif (operator == 'NOT') :
-            return self.difference(term1, term2)
-        else :
-            raise ValueError
+            if (operator == 'AND') :
+                answer = self.intersection(previous_pl, term2)
+            elif (operator == 'OR') :
+                answer = self.union(previous_pl, term2)
+            elif (operator == 'NOT') :
+                answer = self.difference(previous_pl, term2)
+            else :
+                raise ValueError
+        
+            previous_pl = answer
+            
+        return answer
 
 
-    def intersection(self, term1, term2) :
-        posting_l1 = term1.get_posting_list()
+    def intersection(self, posting_l1, term2) :
+        #posting_l1 = term1.get_posting_list()
         posting_l2 = term2.get_posting_list()
         intersection_posting_l = []
       
@@ -45,8 +51,8 @@ class InvertedIndex :
         return intersection_posting_l
 
 
-    def union(self, term1, term2) :
-        posting_l1 = term1.get_posting_list()
+    def union(self, posting_l1, term2) :
+        #posting_l1 = term1.get_posting_list()
         posting_l2 = term2.get_posting_list()
         union_posting_l = []
 
@@ -72,8 +78,8 @@ class InvertedIndex :
         return union_posting_l
 
    
-    def difference(self, term1, term2) :
-        posting_l1 = term1.get_posting_list()
+    def difference(self, posting_l1, term2) :
+        #posting_l1 = term1.get_posting_list()
         posting_l2 = term2.get_posting_list()
         difference_posting_l = []
 

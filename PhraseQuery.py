@@ -55,7 +55,6 @@ class PhraseQuery :
                 
             index += 1        
 
-
         answer_to_query = {}
         for key in intermediate_dict.keys() :
             answer_to_query[key] = []
@@ -65,7 +64,6 @@ class PhraseQuery :
                     answer_to_query[key].append(el)
         
         #answer_to_query = {key: value for key, value in intermediate_dict.items() if (len(value) == (len(query_words) -1))}
-        
         return dict((k, answer_to_query[k]) for k in answer_to_query.keys() if (len(answer_to_query.get(k)) != 0))
         
 

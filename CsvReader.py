@@ -1,6 +1,5 @@
 
 import csv
-from PostingList import PostingList
 from Term import *
 from Document import *
 

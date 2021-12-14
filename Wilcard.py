@@ -6,45 +6,45 @@ class Wilcard :
 
 
     def find(self, query, documents, all_terms) :
-        bigram_dict = self.generate_bigrams_dict(all_terms)
+        trigram_dict = self.generate_trigrams_dict(all_terms)
         answer = []
         word = query[0]
         word = list(word)
         word = ''.join([str(letter) for letter in word])
-        bigrams = self.get_bigrams(word)
-        answer.extend(self.find_terms_containing(bigrams, bigram_dict))
+        trigrams = self.get_trigrams(word)
+        answer.extend(self.find_terms_containing(trigrams, trigram_dict))
         return answer
 
 
-    def generate_bigrams_dict(self, all_terms) :
-        bigram_dict = {}
+    def generate_trigrams_dict(self, all_terms) :
+        trigram_dict = {}
         for term in all_terms.keys() :
-            bigrams = self.get_bigrams(term)
-            for bi in bigrams :
-                if bi in bigram_dict.keys() :
-                    bigram_dict[bi].append(all_terms.get(term))
+            trigrams = self.get_trigrams(term)
+            for tri in trigrams :
+                if tri in trigram_dict.keys() :
+                    trigram_dict[tri].append(all_terms.get(term))
                 else :
                     #bi = Bigram(term)
-                    bigram_dict[bi] = [all_terms.get(term)]
-        return bigram_dict
+                    trigram_dict[tri] = [all_terms.get(term)]
+        return trigram_dict
 
 
-    def get_bigrams(self, term) :
-        bigrams = []
-        word = '$' + term + '$'
+    def get_trigrams(self, term) :
+        trigrams = []
+        word = '$$' + term + '$$'
         word = [c for c in word]
-        for i in range(len(word) - 1) :
-            bi = word[i:i+2]
-            if ('*' not in bi) :
-                bigrams.append(''.join([str(letter) for letter in bi]))
-        return bigrams
+        for i in range(len(word) - 2) :
+            tri = word[i:i+3]
+            if ('*' not in tri) :
+                trigrams.append(''.join([str(letter) for letter in tri]))
+        return trigrams
 
 
-    def find_terms_containing(self, bigrams, bigram_dict) :
-        answer = bigram_dict.get(bigrams[0])
-        for bi in bigrams :
-            if bi in bigram_dict.keys() :
-                answer = [t for t in bigram_dict.get(bi) if t in answer]   #intersection of lists of terms 
+    def find_terms_containing(self, trigrams, trigram_dict) :
+        answer = trigram_dict.get(trigrams[0])
+        for bi in trigrams :
+            if bi in trigram_dict.keys() :
+                answer = [t for t in trigram_dict.get(bi) if t in answer]   #intersection of lists of terms 
             else :
                 print('there is something weird going on, mate...')
         return answer

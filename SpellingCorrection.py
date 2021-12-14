@@ -8,7 +8,7 @@ lemmatizer = WordNetLemmatizer()
 class SpellingCorrection :
 
 
-    def normalize_query(self, query) :
+    def preprocess_query(self, query) :
         exceptions = ['AND', 'NOT', 'OR']
         query = re.sub(r'[^\w\s\\*]','', query)
         final_query = []

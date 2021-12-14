@@ -26,14 +26,12 @@ class BooleanRetrievalSystem :
 
     def search(self, query) : 
         sc = SpellingCorrection()
-        query = sc.normalize_query(query)
+        query = sc.preprocess_query(query)
         spelling_alg = SoundexAlg()
         sc.correct_spell(self._terms, query, spelling_alg)       
 
         search_algorithm = QueryParser().assign_algorithm(query) 
  
-        #print(search_algorithm.find(query, documents, terms))
-
         return search_algorithm.find(query, self._documents, self._terms)
 
 

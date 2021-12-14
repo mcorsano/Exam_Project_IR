@@ -20,10 +20,10 @@ layout = [[sg.Text("Insert query")],
 
 margins = (200,150)
 
-# Create the window
+# Creation of the window
 window = sg.Window("Demo", layout = layout, margins = margins, finalize = True)
 
-# The Event Loop
+# Event loop
 while True:
     event, values = window.read() 
     if event == sg.WIN_CLOSED or event == 'Exit' :
@@ -49,8 +49,7 @@ window.close()
 
 '''
 
-retrieved_docs = retrieval_model.search('driv*')
+retrieved_docs = retrieval_model.search('fil*')
 print(retrieved_docs)
 
 '''
-

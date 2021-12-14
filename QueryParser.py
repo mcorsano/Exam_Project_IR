@@ -15,7 +15,7 @@ class QueryParser :
         if (self.check_wildcard(query)) :
             print('ho trovato una wildcard')
             return Wilcard()
-        elif (self.check_operators(operators, query)) :   ### MANCANO LE WILCARDS ###
+        elif (self.check_operators(operators, query)) : 
             return PhraseQuery()
         else :
             return InvertedIndex()

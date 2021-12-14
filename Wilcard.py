@@ -35,17 +35,15 @@ class Wilcard :
         word = [c for c in word]
         for i in range(len(word) - 1) :
             bi = word[i:i+2]
-            if ( '*' not in bi) :
+            if ('*' not in bi) :
                 bigrams.append(''.join([str(letter) for letter in bi]))
         return bigrams
 
 
     def find_terms_containing(self, bigrams, bigram_dict) :
         answer = bigram_dict.get(bigrams[0])
-        #print(answer)
         for bi in bigrams :
             if bi in bigram_dict.keys() :
-                #print(bigram_dict[bi])
                 answer = [t for t in bigram_dict.get(bi) if t in answer]   #intersection of lists of terms 
             else :
                 print('there is something weird going on, mate...')

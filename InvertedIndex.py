@@ -32,7 +32,6 @@ class InvertedIndex :
 
 
     def intersection(self, posting_l1, term2) :
-        #posting_l1 = term1.get_posting_list()
         posting_l2 = term2.get_posting_list()
         intersection_posting_l = []
       
@@ -52,7 +51,6 @@ class InvertedIndex :
 
 
     def union(self, posting_l1, term2) :
-        #posting_l1 = term1.get_posting_list()
         posting_l2 = term2.get_posting_list()
         union_posting_l = []
 
@@ -79,7 +77,6 @@ class InvertedIndex :
 
    
     def difference(self, posting_l1, term2) :
-        #posting_l1 = term1.get_posting_list()
         posting_l2 = term2.get_posting_list()
         difference_posting_l = []
 

@@ -28,7 +28,9 @@ class BooleanRetrievalSystem :
 
         search_algorithm = qp.assign_algorithm(query) 
  
-        print(search_algorithm.find(query, documents, terms))  
+        #print(search_algorithm.find(query, documents, terms))
+
+        return search_algorithm.find(query, documents, terms)
 
 
     

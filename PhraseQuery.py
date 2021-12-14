@@ -29,6 +29,7 @@ class PhraseQuery :
                     doc = documents.get(posting_l1[i])
                     positions_1 = doc.get_term_positions(term1)
                     positions_2 = doc.get_term_positions(term2)
+
                     k = 0
                     l = 0
                     while (k < len(positions_1) and l < len(positions_2)) :
@@ -49,14 +50,31 @@ class PhraseQuery :
                     i += 1
                 else :
                     j += 1
-            #print(intermediate_dict)              ### PHRASE QUERIES DA SISTEMARE PERCHè PRENDE SOLO UNA OCCORRENZA IN UN SINGOLO DOC ###
-
+            #print(intermediate_dict)              
 
                 
-            index += 1
+            index += 1        
+
+
+        answer_to_query = {}
+        for key in intermediate_dict.keys() :
+            answer_to_query[key] = []
+            values = intermediate_dict.get(key)
+            for el in values :
+                if self.find_next_n_consecutives(el, len(query) - 2, values) :
+                    answer_to_query[key].append(el)
         
-        answer_to_query = {key: value for key, value in intermediate_dict.items() if (len(value) == (len(query_words) -1))}
+        #answer_to_query = {key: value for key, value in intermediate_dict.items() if (len(value) == (len(query_words) -1))}
         
-        return answer_to_query
+        return dict((k, answer_to_query[k]) for k in answer_to_query.keys() if (len(answer_to_query.get(k)) != 0))
         
 
+    def find_next_n_consecutives(self, number, n, list_to_check) :
+        tmp = number
+        for i in range(n) :
+            tmp += 1
+            if (tmp in list_to_check) :
+                pass
+            else :
+                return False
+        return True

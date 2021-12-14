@@ -42,11 +42,11 @@ class Wilcard :
 
     def find_terms_containing(self, trigrams, trigram_dict) :
         answer = trigram_dict.get(trigrams[0])
-        for bi in trigrams :
-            if bi in trigram_dict.keys() :
-                answer = [t for t in trigram_dict.get(bi) if t in answer]   #intersection of lists of terms 
-            else :
-                print('there is something weird going on, mate...')
+        for tri in trigrams :
+            if tri in trigram_dict.keys() :
+                answer = [t for t in trigram_dict.get(tri) if t in answer]   #intersection of lists of terms 
+            #else :
+                #print('trigram not found')
         return answer
 
 

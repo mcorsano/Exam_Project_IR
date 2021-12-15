@@ -1,8 +1,6 @@
 
 from nltk.stem import WordNetLemmatizer
-lemmatizer = WordNetLemmatizer()
 from gensim.parsing.preprocessing import STOPWORDS
-from collections import defaultdict
 import re
 
 
@@ -62,6 +60,7 @@ class Document :
 
 
     def lemmatize(self) :
+        lemmatizer = WordNetLemmatizer()
         self._summary = [lemmatizer.lemmatize(word) for word in self._summary]
 
 

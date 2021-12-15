@@ -1,12 +1,9 @@
 
-from Bigram import *
+class Wildcard :
 
 
-class Wilcard :
-
-
-    def find(self, query, documents, all_terms, trigrams) :
-        #trigram_dict = self.generate_trigrams_dict(all_terms)
+    def find(self, query, model) :
+        trigrams = model.get_trigrams()
         trigram_dict = trigrams
         answer = []
         word = query[0]
@@ -15,21 +12,6 @@ class Wilcard :
         trigrams = self.get_trigrams(word)
         answer.extend(self.find_terms_containing(trigrams, trigram_dict))
         return answer
-
-
-    '''    
-    def generate_trigrams_dict(self, all_terms) :
-        trigram_dict = {}
-        for term in all_terms.keys() :
-            trigrams = self.get_trigrams(term)
-            for tri in trigrams :
-                if tri in trigram_dict.keys() :
-                    trigram_dict[tri].append(all_terms.get(term))
-                else :
-                    #bi = Bigram(term)
-                    trigram_dict[tri] = [all_terms.get(term)]
-        return trigram_dict
-    '''
 
 
     def get_trigrams(self, term) :
@@ -48,10 +30,15 @@ class Wilcard :
         for tri in trigrams :
             if tri in trigram_dict.keys() :
                 answer = [t for t in trigram_dict.get(tri) if t in answer]   #intersection of lists of terms 
-            #else :
-                #print('trigram not found')
+            else :
+                raise ValueError('the current research lead to no results.\nPlease, refrase a new query')
         return set(answer)
 
-
-    
+    @staticmethod
+    def has_wildcard(query) :
+        for i in range(len(query)) :
+            word = list(query[i])
+            if '*' in word :
+                return True
+        return False
         

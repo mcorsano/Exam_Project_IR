@@ -1,15 +1,10 @@
 
-from Term import *
-from nltk.stem import WordNetLemmatizer
-lemmatizer = WordNetLemmatizer()
-
-
 class InvertedIndex :
 
 
-    def find(self, query, documents, terms, trigrams) :   # i documenti forse non servono
+    def find(self, query, model) : 
+        terms = model.get_terms()
         words = query
-
         word1 = words[0]
         previous_pl = terms.get(word1).get_posting_list()
         for i in range(1, len(query), 2) :

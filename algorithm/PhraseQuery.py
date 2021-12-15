@@ -1,14 +1,14 @@
 
-from Term import *
-from InvertedIndex import *
-from nltk.stem import WordNetLemmatizer
-lemmatizer = WordNetLemmatizer()
-
-
 class PhraseQuery :
 
 
-    def find(self, query, documents, terms, trigrams) :
+    def find(self, query, model) :
+        terms = model.get_terms()
+
+        if (len(query) == 1) :
+            return terms.get(query[0]).get_posting_list()
+
+        documents = model.get_documents()
         query_words = query
         index = 0
         intermediate_dict = {}
@@ -50,8 +50,6 @@ class PhraseQuery :
                     i += 1
                 else :
                     j += 1
-            #print(intermediate_dict)              
-
                 
             index += 1        
 
@@ -63,7 +61,6 @@ class PhraseQuery :
                 if self.find_next_n_consecutives(el, len(query) - 2, values) :
                     answer_to_query[key].append(el)
         
-        #answer_to_query = {key: value for key, value in intermediate_dict.items() if (len(value) == (len(query_words) -1))}
         return dict((k, answer_to_query[k]) for k in answer_to_query.keys() if (len(answer_to_query.get(k)) != 0))
         
 

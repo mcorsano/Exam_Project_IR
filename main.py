@@ -1,5 +1,5 @@
 
-from BooleanRetrievalSystem import *
+from finder.BooleanRetrievalSystem import  *
 import PySimpleGUI as sg
 
 

@@ -1,8 +1,4 @@
 
-from pyphonetics import RefinedSoundex 
-rs = RefinedSoundex()
-
-
 class SoundexAlg :
 
 
@@ -12,9 +8,7 @@ class SoundexAlg :
             if (self.get_soundex(word) == self.get_soundex(all_words[i])) :
                 suggestions.append(all_words[i])
         return suggestions
-
-        #return [term for term in all_words if (rs.distance(word1=word, word2=term) == 0)]
-
+        
 
     def get_soundex(self, name):
         name = name.upper()

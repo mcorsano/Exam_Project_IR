@@ -30,3 +30,7 @@ class Model :
 
     def get_trigrams(self) :
         return self._trigrams
+
+
+    def get_document(self, id) :
+        return self._documents.get(id)

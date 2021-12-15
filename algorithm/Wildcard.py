@@ -11,7 +11,7 @@ class Wildcard :
         word = ''.join([str(letter) for letter in word])
         trigrams = self.get_trigrams(word)
         answer.extend(self.find_terms_containing(trigrams, trigram_dict))
-        return answer
+        return ', '.join(answer)
 
 
     def get_trigrams(self, term) :

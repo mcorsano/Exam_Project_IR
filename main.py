@@ -33,7 +33,7 @@ while True:
         try :
             retrieved_docs = retrieval_model.search(values['-IN-'])
             window['-OUTPUT-'].update(retrieved_docs)
-        except ValueError  as err:
+        except ValueError  as err :
             window['-OUTPUT-'].update(str(err))
             
 
@@ -42,14 +42,3 @@ while True:
         window['-OUTPUT-'].update('')
 
 window.close()
-
-
-
-
-
-'''
-
-retrieved_docs = retrieval_model.search('fil*')
-print(retrieved_docs)
-
-'''

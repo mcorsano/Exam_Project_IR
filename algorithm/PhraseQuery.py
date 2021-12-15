@@ -61,7 +61,14 @@ class PhraseQuery :
                 if self.find_next_n_consecutives(el, len(query) - 2, values) :
                     answer_to_query[key].append(el)
         
-        return dict((k, answer_to_query[k]) for k in answer_to_query.keys() if (len(answer_to_query.get(k)) != 0))
+        result =  dict((k, answer_to_query[k]) for k in answer_to_query.keys() if (len(answer_to_query.get(k)) != 0))
+        text = []
+        for doc in result.keys():
+            text.append(doc.short_description() + ' - position: ' + str(result.get(doc))) # Doc - Id : 4763824, Summary: sfdjkfsjd
+        return 'The retrieved documents and the relative position of the query inside each of them are:\n\n' + '\n'.join(text)
+
+
+
         
 
     def find_next_n_consecutives(self, number, n, list_to_check) :

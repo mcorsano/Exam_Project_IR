@@ -68,6 +68,5 @@ class Document :
         return self._terms[term]
 
 
-
-
-
+    def short_description(self) :
+        return 'Doc id: ' + str(self._id) + ', title: \'' + str(self._title) + '\' '

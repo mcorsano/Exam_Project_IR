@@ -23,7 +23,11 @@ class InvertedIndex :
         
             previous_pl = answer
             
-        return answer
+        text = []
+        for id in answer:
+            document = model.get_document(id)
+            text.append(document.short_description()) # Doc - Id : 4763824, Summary: sfdjkfsjd
+        return 'The retrieved documents are:\n\n' + '\n'.join(text)
 
 
     def intersection(self, posting_l1, term2) :

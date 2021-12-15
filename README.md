@@ -10,7 +10,11 @@ It consists in a information retrieval systems able to answer boolean queries, p
 
 Launch
 ======
-The project comes with a simple graphic interface....
+The project comes with a simple graphic interface. 
+Run 
+```
+python main.py
+```
 
 How to perform the queries
 ==========================

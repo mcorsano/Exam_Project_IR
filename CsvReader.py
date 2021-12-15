@@ -2,6 +2,8 @@
 import csv
 from Term import *
 from Document import *
+from Trigram import Trigram
+from Wilcard import *
 
 
 class CsvReader :
@@ -11,6 +13,7 @@ class CsvReader :
         self._filename = filename
         self._documents = {}
         self._terms = {}
+        self._trigrams = {}
 
 
     def read(self) :
@@ -43,6 +46,13 @@ class CsvReader :
 
                         term.add_doc(document)
                     
+                    trigrams = Wilcard().get_trigrams(el)
+                    for tri in trigrams :
+                        if tri in self._trigrams.keys() :
+                            self._trigrams[tri].append(term.get_term())
+                        else :
+                            self._trigrams[tri] = [term.get_term()]
+                    
                     index += 1  
 
 
@@ -54,6 +64,10 @@ class CsvReader :
 
     def get_all_terms(self) :
         return self._terms 
+
+    
+    def get_all_trigrams(self) :
+        return self._trigrams
 
     
 

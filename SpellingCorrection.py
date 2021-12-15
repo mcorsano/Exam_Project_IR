@@ -32,8 +32,7 @@ class SpellingCorrection :
                     pass
                 else :
                     possible_corrections.extend(spelling_alg.correct(query[i], all_words))
-                    #print('the inserted word is not present, substitute it with a different one ', possible_corrections, '?')
-                    raise ValueError('The inserted word is not present, please refrase the query.\nDid you mean one of these?\n' + ' '.join([str(elem) for elem in possible_corrections]))
+                    raise ValueError('The inserted word is not present, please refrase the query.\n\nPossible suggestions:\n' + ' '.join([str(elem) for elem in possible_corrections]))
                     #correct_word = input()
                     #query[i] = correct_word
             return query

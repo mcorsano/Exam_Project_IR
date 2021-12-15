@@ -7,7 +7,7 @@ lemmatizer = WordNetLemmatizer()
 class InvertedIndex :
 
 
-    def find(self, query, documents, terms) :   # i documenti forse non servono
+    def find(self, query, documents, terms, trigrams) :   # i documenti forse non servono
         words = query
 
         word1 = words[0]

@@ -8,7 +8,7 @@ lemmatizer = WordNetLemmatizer()
 class PhraseQuery :
 
 
-    def find(self, query, documents, terms) :
+    def find(self, query, documents, terms, trigrams) :
         query_words = query
         index = 0
         intermediate_dict = {}

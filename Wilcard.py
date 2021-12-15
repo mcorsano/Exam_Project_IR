@@ -5,8 +5,9 @@ from Bigram import *
 class Wilcard :
 
 
-    def find(self, query, documents, all_terms) :
-        trigram_dict = self.generate_trigrams_dict(all_terms)
+    def find(self, query, documents, all_terms, trigrams) :
+        #trigram_dict = self.generate_trigrams_dict(all_terms)
+        trigram_dict = trigrams
         answer = []
         word = query[0]
         word = list(word)
@@ -16,6 +17,7 @@ class Wilcard :
         return answer
 
 
+    '''    
     def generate_trigrams_dict(self, all_terms) :
         trigram_dict = {}
         for term in all_terms.keys() :
@@ -27,6 +29,7 @@ class Wilcard :
                     #bi = Bigram(term)
                     trigram_dict[tri] = [all_terms.get(term)]
         return trigram_dict
+    '''
 
 
     def get_trigrams(self, term) :
@@ -47,7 +50,7 @@ class Wilcard :
                 answer = [t for t in trigram_dict.get(tri) if t in answer]   #intersection of lists of terms 
             #else :
                 #print('trigram not found')
-        return answer
+        return set(answer)
 
 
     

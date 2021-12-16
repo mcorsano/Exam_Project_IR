@@ -32,7 +32,7 @@ The syntax allowed for the queries is the following:
 * **wildcard queries**: the wildcard operator used is the asterisk one (\*). When searching for a word, any number of wildcard operators is allowed.  
 
 ### Implementation details
-The whole corpus is read only once when the program starts, therefore ... 
+The whole corpus is read only once when the program starts, therefore even if the loading requires a few seconds, then the information retrieval system is quite efficient.
 
 ### Required external packages
 * **nltk** - for lemmatization

@@ -8,7 +8,7 @@ class Document :
 
 
     def __init__(self, id, title, summary) -> None :
-        self._id = int(id)    ### FORSE QUA è ID SENZA INT(ID) ###
+        self._id = int(id)
         self._title = title
         self._summary = summary
         self._terms = {}
@@ -52,7 +52,7 @@ class Document :
 
 
     def remove_stopwords(self) :
-        self._summary = [word for word in self._summary if not word in STOPWORDS]
+        self._summary = [word for word in self._summary if word.lower() not in STOPWORDS]
 
 
     def normalize(self) :

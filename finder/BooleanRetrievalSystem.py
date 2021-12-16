@@ -26,7 +26,7 @@ class BooleanRetrievalSystem :
         sc = SpellingCorrection(query)
         query = sc.preprocess_query()
         spelling_alg = SoundexAlg()
-        sc.correct_spell(self._model.get_terms(), spelling_alg)       
+        sc.correct_spell(self._model.get_terms(), spelling_alg)
 
         search_algorithm = QueryParser().assign_algorithm(query) 
  

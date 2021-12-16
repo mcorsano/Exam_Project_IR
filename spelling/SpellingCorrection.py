@@ -1,7 +1,10 @@
 
 import re
+from typing import final
 from nltk.stem import WordNetLemmatizer
 from algorithm.Wildcard import Wildcard
+from gensim.parsing.preprocessing import STOPWORDS
+
 
 
 class SpellingCorrection :
@@ -19,8 +22,11 @@ class SpellingCorrection :
         for word in query.split() :
             if word in exceptions :
                 final_query.append(word)
+            elif word.lower() in STOPWORDS :
+                pass
             else :
-                final_query.append(lemmatizer.lemmatize(word.lower()))   
+                final_query.append(lemmatizer.lemmatize(word.lower()))
+        self._query = ' '.join([el for el in final_query])
         return final_query
 
 
@@ -37,6 +43,9 @@ class SpellingCorrection :
                     pass
                 else :
                     possible_corrections.extend(spelling_alg.correct(query[i], all_words))
-                    raise ValueError('The inserted word is not present, please refrase the query.\n\nPossible suggestions:\n' + ' '.join([str(elem) for elem in possible_corrections]))
+                    if len(possible_corrections) == 0 :
+                        raise ValueError('This research is not valid, please refrase the query.')
+                    else :
+                        raise ValueError('This research is not valid, please refrase the query.\n\nPossible suggestions:\n' + ', '.join([str(elem) for elem in possible_corrections]))
             return query
  

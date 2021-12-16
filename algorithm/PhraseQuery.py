@@ -4,9 +4,15 @@ class PhraseQuery :
 
     def find(self, query, model) :
         terms = model.get_terms()
+        text = []
 
         if (len(query) == 1) :
-            return terms.get(query[0]).get_posting_list()
+            for posting in terms.get(query[0]).get_docs() :
+                text.append(posting.short_description())
+            if (len(text) == 1) :
+                return 'The query is present in the following document:\n\n' + '\n'.join(text)
+            else :
+                return 'The query is present in the following documents:\n\n' + '\n'.join(text)
 
         documents = model.get_documents()
         query_words = query
@@ -62,14 +68,14 @@ class PhraseQuery :
                     answer_to_query[key].append(el)
         
         result =  dict((k, answer_to_query[k]) for k in answer_to_query.keys() if (len(answer_to_query.get(k)) != 0))
-        text = []
+
         for doc in result.keys():
-            text.append(doc.short_description() + ' - position: ' + str(result.get(doc))) # Doc - Id : 4763824, Summary: sfdjkfsjd
-        return 'The retrieved documents and the relative position of the query inside each of them are:\n\n' + '\n'.join(text)
+            text.append(doc.short_description() + ' - position: ' + str(result.get(doc)))
+        if (len(text) == 1) :
+            return 'The retrieved document and the relative position of the query inside of the terms is:\n\n' + '\n'.join(text)
+        else:
+            return 'The retrieved documents and the relative position of the query inside each of them are:\n\n' + '\n'.join(text)
 
-
-
-        
 
     def find_next_n_consecutives(self, number, n, list_to_check) :
         tmp = number

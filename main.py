@@ -21,7 +21,7 @@ layout = [[sg.Text("Insert query")],
 margins = (200,150)
 
 # Creation of the window
-window = sg.Window("Demo", layout = layout, margins = margins, finalize = True)
+window = sg.Window("Information Retrieval System", layout = layout, margins = margins, finalize = True)
 
 # Event loop
 while True:

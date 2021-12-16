@@ -11,7 +11,10 @@ class Wildcard :
         word = ''.join([str(letter) for letter in word])
         trigrams = self.get_trigrams(word)
         answer.extend(self.find_terms_containing(trigrams, trigram_dict))
-        return ', '.join(answer)
+        if (len(answer) == 1) :
+            return 'The resulting answer to the given wildcard query is: \n\n' + ', '.join(answer)
+        else :
+            return 'The resulting answers to the given wildcard query are: \n\n' + ', '.join(answer)
 
 
     def get_trigrams(self, term) :
@@ -31,7 +34,7 @@ class Wildcard :
             if tri in trigram_dict.keys() :
                 answer = [t for t in trigram_dict.get(tri) if t in answer]   #intersection of lists of terms 
             else :
-                raise ValueError('the current research lead to no results.\nPlease, refrase a new query')
+                raise ValueError('The current research lead to no results.\nPlease, refrase a new query')
         return set(answer)
 
     @staticmethod

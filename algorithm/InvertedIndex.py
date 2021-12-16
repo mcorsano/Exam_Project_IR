@@ -26,8 +26,11 @@ class InvertedIndex :
         text = []
         for id in answer:
             document = model.get_document(id)
-            text.append(document.short_description()) # Doc - Id : 4763824, Summary: sfdjkfsjd
-        return 'The retrieved documents are:\n\n' + '\n'.join(text)
+            text.append(document.short_description())
+        if (len(text) == 1) :
+            return 'The retrieved document for the given query is:\n\n' + '\n'.join(text)
+        else :
+            return 'The retrieved documents for the given query are:\n\n' + '\n'.join(text)
 
 
     def intersection(self, posting_l1, term2) :

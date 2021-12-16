@@ -10,7 +10,7 @@ It consists in an information retrieval system able to answer boolean queries, p
 
 Corpus
 ======
-The corpus, which consists of 15.000 documents, contains information about movies, extracted from the November 2nd, 2012 dump of English-language Wikipedia.  
+The corpus, which consists of 10.000 documents, contains information about movies, extracted from the November 2nd, 2012 dump of English-language Wikipedia.  
 Each document contains the Wikipedia movie ID followed by the title and the plot summary of the movie itself.  
 The whole corpus is stored in a csv file.
 

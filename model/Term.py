@@ -50,7 +50,7 @@ class Term :
         positional_index = {}
         posting_list = self._docs 
         for posting in posting_list :
-            positional_index[posting] = posting.get_term_positions(self._term)      ### fix this ###
+            positional_index[posting] = posting.get_term_positions(self._term)  
 
 
 

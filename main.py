@@ -13,7 +13,7 @@ layout = [[sg.Text("Insert query")],
             [sg.Input(size = (75,1), key = '-IN-', enable_events = True)],
             [sg.Button('Search'), sg.Button('Clear')],
             [sg.Text('')],
-            [sg.Text('', size = (75, 10), key = '-OUTPUT-')]]
+            [sg.Output(size = (75, 10), key = '-OUTPUT-')]]
 
 margins = (200,150)
 

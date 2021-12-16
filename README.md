@@ -1,4 +1,4 @@
-# Exam Project IR
+# Exam project - Information Retrieval Course 
 
 ## Author 
 Marianna Corsano

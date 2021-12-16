@@ -13,7 +13,7 @@ class InvertedIndex :
         # on the result of the previous boolen search
         for i in range(1, len(query), 2) :
             if ((len(query) < 3)) :
-                raise ValueError('The current research lead to no results.\nPlease, refrase a new query')
+                raise ValueError('The current search lead to no results.\nPlease, refrase a new query')
             word2 = words[i+1]
             term2 = terms.get(word2)
             operator = words[i]
@@ -34,6 +34,8 @@ class InvertedIndex :
         for id in answer:
             document = model.get_document(id)
             text.append(document.short_description())
+        if (len(text) == 0) :
+            return 'The current search lead to no results.\nPlease, refrase a new query'
         if (len(text) == 1) :
             return 'The retrieved document for the given query is:\n\n' + '\n'.join(text)
         else :

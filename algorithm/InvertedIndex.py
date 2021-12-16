@@ -8,9 +8,12 @@ class InvertedIndex :
         word1 = words[0]
         previous_pl = terms.get(word1).get_posting_list()
 
-        # to allow multiple boolean queries like 'term1 AND term2 OR term 3' I perform the first boolean operation on the
-        # posting lists of the first two terms, and then I sequentially update the results on the initial posting list 
+        # to allow multiple boolean queries like 'term1 AND term2 OR term 3' the first boolean operation is performed on the
+        # posting lists of the first two terms, and then it is sequentially updated the results of the following boolean operations
+        # on the result of the previous boolen search
         for i in range(1, len(query), 2) :
+            if ((len(query) < 3)) :
+                raise ValueError('The current research lead to no results.\nPlease, refrase a new query')
             word2 = words[i+1]
             term2 = terms.get(word2)
             operator = words[i]
@@ -26,7 +29,7 @@ class InvertedIndex :
         
             previous_pl = answer
         
-        # to get a more meaningful and aestetic result
+        # to get a more meaningful and aesthetic result
         text = []
         for id in answer:
             document = model.get_document(id)

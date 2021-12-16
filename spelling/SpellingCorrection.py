@@ -1,6 +1,5 @@
 
 import re
-from typing import final
 from nltk.stem import WordNetLemmatizer
 from algorithm.Wildcard import Wildcard
 from gensim.parsing.preprocessing import STOPWORDS
@@ -22,7 +21,7 @@ class SpellingCorrection :
             if word in exceptions :
                 final_query.append(word)
             elif word.lower() in STOPWORDS :   
-                # to remove a word from the query if it in the stoplist
+                # to remove a word from the query if it is in the stoplist
                 pass
             else :
                 final_query.append(lemmatizer.lemmatize(word.lower()))

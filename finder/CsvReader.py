@@ -77,13 +77,3 @@ class CsvReader :
     
     def get_all_trigrams(self) :
         return self._trigrams
-
-
-    
-
-    
-
-
-
-
-

@@ -19,7 +19,7 @@ class Wildcard :
 
     def get_trigrams(self, term) :
         trigrams = []
-        word = '$$' + term + '$$'   # The $$ makes me able to peform single letter wildcard queries (e.g. f*) with trigrams
+        word = '$$' + term + '$$'   # The $$ makes the user able to peform single letter wildcard queries (e.g. f*)
         word = [c for c in word]    
         for i in range(len(word) - 2) :
             tri = word[i:i+3]

@@ -7,8 +7,8 @@ class PhraseQuery :
         text = []
 
         if (len(query) == 1) :
-            # it means I am just looking for a single word
-            # then I only need to return its posting list
+            # it means that the user is searching one single word
+            # then it is only needed to return its posting list
             for posting in terms.get(query[0]).get_docs() :
                 text.append(posting.short_description())
             if (len(text) == 1) :
@@ -34,7 +34,7 @@ class PhraseQuery :
 
             i = 0
             j = 0
-            # first I need to find the documents in common in the two posting lists 
+            # first, it is needed to find the documents in common among the two posting lists 
             while (i < len(posting_l1) and j < len(posting_l2)) :
                 if (posting_l1[i] == posting_l2[j]) :
                     doc = documents.get(posting_l1[i])
@@ -43,8 +43,8 @@ class PhraseQuery :
 
                     k = 0
                     l = 0
-                    # when I found one common document, I look into the position indexes
-                    # if the two words are present subsiquently in the document, their position has to be contiguous 
+                    # when a common document has been found, it is possible to look into the position indexes;
+                    # if the two words are present subsiquently in the document, their positions have to be contiguous 
                     while (k < len(positions_1) and l < len(positions_2)) :
                         if (positions_1[k] == (positions_2[l] - 1)) :
                             if (doc not in intermediate_dict.keys()) :
@@ -68,7 +68,7 @@ class PhraseQuery :
 
         # in a single document, when performing a query containing more than 2 terms, a subset of the query may appear
         # even if the complete query is not present in the document itself.
-        # So, I only take as results the documents in which all the couple of terms in the query are present in the correct order.
+        # So, it is taken as result the documents in which all the couple of terms in the query are present in the correct order.
         answer_to_query = {}
         for key in intermediate_dict.keys() :
             answer_to_query[key] = []
@@ -79,7 +79,7 @@ class PhraseQuery :
         
         result =  dict((k, answer_to_query[k]) for k in answer_to_query.keys() if (len(answer_to_query.get(k)) != 0))
 
-        # to get a more meaningful and aestetic result
+        # to get a more meaningful and aesthetic result
         for doc in result.keys():
             text.append(doc.short_description() + ' - position: ' + str(result.get(doc)))
         if (len(text) == 0) :

@@ -88,7 +88,7 @@ class PhraseQuery :
             return 'The retrieved document and the relative position of the query inside of the terms is:\n\n' + '\n'.join(text)
         else:
             return 'The retrieved documents and the relative position of the query inside each of them are:\n\n' + '\n'.join(text)
-
+        # the position is meant to be computed not taking into account the stopwords
 
     def find_next_n_consecutives(self, number, n, list_to_check) :
         tmp = number

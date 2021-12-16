@@ -55,4 +55,9 @@ pip install regex
 * **PySimpleGUI** - for the graphic interface
 ```
 pip install PySimpleGUI
+pip install tkinter
+```
+* **tkinter** - as PySimpleGUI dependency
+```
+sudo apt-get install python3-tk
 ```

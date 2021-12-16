@@ -1,6 +1,5 @@
 
 import csv
-#from packages import CsvReader
 from model.Term import Term
 from model.Document import Document 
 from algorithm.Wildcard import Wildcard

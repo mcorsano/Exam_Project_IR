@@ -7,8 +7,6 @@ file_name = 'corpus.csv'
 retrieval_model = BooleanRetrievalSystem(file_name)
 retrieval_model.read_csv()
 
-
-
 sg.theme('DarkAmber') 
 
 layout = [[sg.Text("Insert query")],
@@ -16,7 +14,6 @@ layout = [[sg.Text("Insert query")],
             [sg.Button('Search'), sg.Button('Clear')],
             [sg.Text('')],
             [sg.Text('', size = (75, 10), key = '-OUTPUT-')]]
-            #[sg.Output(size=(75,10), key='-OUTPUT-')]]
 
 margins = (200,150)
 
@@ -25,6 +22,7 @@ window = sg.Window("Information Retrieval System", layout = layout, margins = ma
 
 # Event loop
 while True:
+
     event, values = window.read() 
     if event == sg.WIN_CLOSED or event == 'Exit' :
         break      
@@ -35,7 +33,6 @@ while True:
             window['-OUTPUT-'].update(retrieved_docs)
         except ValueError  as err :
             window['-OUTPUT-'].update(str(err))
-            
 
     if event == 'Clear' :
         window['-IN-'].update('')

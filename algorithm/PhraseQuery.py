@@ -83,7 +83,7 @@ class PhraseQuery :
         for doc in result.keys():
             text.append(doc.short_description() + ' - position: ' + str(result.get(doc)))
         if (len(text) == 0) :
-            return 'Please, insert a query.'
+            return 'The current search lead to no results. Please, insert a new query.'
         elif (len(text) == 1) :
             return 'The retrieved document and the relative position of the query inside of the terms is:\n\n' + '\n'.join(text)
         else:

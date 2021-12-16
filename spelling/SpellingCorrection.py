@@ -6,7 +6,6 @@ from algorithm.Wildcard import Wildcard
 from gensim.parsing.preprocessing import STOPWORDS
 
 
-
 class SpellingCorrection :
 
 
@@ -16,13 +15,14 @@ class SpellingCorrection :
 
     def preprocess_query(self) :
         exceptions = ['AND', 'NOT', 'OR']
-        query = re.sub(r'[^\w\s\\*]','', self._query)
+        query = re.sub(r'[^\w\s\\*]','', self._query) # to remove punctuation
         final_query = []
         lemmatizer = WordNetLemmatizer()
         for word in query.split() :
             if word in exceptions :
                 final_query.append(word)
-            elif word.lower() in STOPWORDS :
+            elif word.lower() in STOPWORDS :   
+                # to remove a word from the query if it in the stoplist
                 pass
             else :
                 final_query.append(lemmatizer.lemmatize(word.lower()))

@@ -19,7 +19,7 @@ class BooleanRetrievalSystem :
         reader.read()
         self._model.set_documents(reader.get_all_documents()) 
         self._model.set_terms(reader.get_all_terms())
-        self._model.set_trigrams(reader.get_all_trigrams()) 
+        self._model.set_trigrams(reader.get_all_trigrams())
 
 
     def search(self, query) : 

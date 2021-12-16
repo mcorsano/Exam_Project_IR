@@ -10,15 +10,12 @@ class SoundexAlg :
         return suggestions
         
 
-    def get_soundex(self, name):
-        name = name.upper()
-
-        soundex = ""
-        soundex += name[0]
-
+    def get_soundex(self, word):
+        word = word.upper()
+        soundex = word[0]
         dictionary = {"BFPV": "1", "CGJKQSXZ":"2", "DT":"3", "L":"4", "MN":"5", "R":"6", "AEIOUHWY":"."}
 
-        for char in name[1:]:
+        for char in word[1:]:
             for key in dictionary.keys():
                 if char in key:
                     code = dictionary[key]

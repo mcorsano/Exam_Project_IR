@@ -19,8 +19,8 @@ class Wildcard :
 
     def get_trigrams(self, term) :
         trigrams = []
-        word = '$$' + term + '$$'
-        word = [c for c in word]
+        word = '$$' + term + '$$'   # The $$ makes me able to peform single letter wildcard queries (e.g. f*) with trigrams
+        word = [c for c in word]    
         for i in range(len(word) - 2) :
             tri = word[i:i+3]
             if ('*' not in tri) :
@@ -32,10 +32,13 @@ class Wildcard :
         answer = trigram_dict.get(trigrams[0])
         for tri in trigrams :
             if tri in trigram_dict.keys() :
-                answer = [t for t in trigram_dict.get(tri) if t in answer]   #intersection of lists of terms 
+                answer = [t for t in trigram_dict.get(tri) if t in answer]
+                # for each trigram, it is performed the intersection between the list of words in which it is
+                # contained and the list of words in which the already encountered trigrams are contained      
             else :
                 raise ValueError('The current research lead to no results.\nPlease, refrase a new query')
         return set(answer)
+
 
     @staticmethod
     def has_wildcard(query) :

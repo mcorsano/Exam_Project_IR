@@ -3,7 +3,7 @@ from finder.BooleanRetrievalSystem import  *
 import PySimpleGUI as sg
 
 
-file_name = 'corpus.csv'
+file_name = 'corpus_subset.csv'
 retrieval_model = BooleanRetrievalSystem(file_name)
 retrieval_model.read_csv()
 

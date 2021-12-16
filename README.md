@@ -27,7 +27,7 @@ Technical details
 
 ### How to perform the queries
 The syntax allowed for the queries is the following:
-* **boolean queries**: any number of words is allowed, separated by one among the operators AND, NOT, OR, specified in capital letters
+* **boolean queries**: any number of words is allowed, separated by one among the operators AND, OR, NOT, specified in capital letters
 * **phrase queries**: any number of word to be searched subsequently in the corpus is allowed
 * **wildcard queries**: the wildcard operator used is the asterisk one (\*). When searching for a word, any number of wildcard operators is allowed.  
 

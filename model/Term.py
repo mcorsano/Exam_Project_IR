@@ -23,10 +23,6 @@ class Term :
         return isinstance(other, Term) and other._term < self._term
 
 
-    def __hash__(self) -> int :
-        return hash(self._term)
-
-
     def get_docs(self) :
         return self._docs
 

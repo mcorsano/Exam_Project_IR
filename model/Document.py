@@ -39,11 +39,15 @@ class Document :
 
 
     def add_term(self, term, index) :
-        self._terms[term].append(index)
+        self._terms[term.get_term()].append(index)
 
     
     def add_new_term(self, new_term, index) :
-        self._terms[new_term] = [index]
+        self._terms[new_term.get_term()] = [index]
+
+
+    def contains(self, term) :
+        return term.get_term() in self._terms.keys()
 
 
     def tokenize(self) :
@@ -65,7 +69,7 @@ class Document :
 
 
     def get_term_positions(self, term) :
-        return self._terms[term]
+        return self._terms[term.get_term()]
 
 
     def short_description(self) :

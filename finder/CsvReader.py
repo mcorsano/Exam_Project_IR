@@ -43,7 +43,7 @@ class CsvReader :
     def  _read_word(self, document, word, index) :
         if word in self._terms.keys() :
             term = self._terms.get(word)
-            if term in document.get_terms().keys() :
+            if document.contains(term) :
                 document.add_term(term, index)
             else :
                 document.add_new_term(term, index)
@@ -51,7 +51,7 @@ class CsvReader :
         else :
             term = Term(word)
             self._terms[word] = term
-            document.add_new_term(term,index)
+            document.add_new_term(term, index)
 
             term.add_doc(document)
         

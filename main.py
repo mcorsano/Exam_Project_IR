@@ -1,11 +1,18 @@
 
 from finder.BooleanRetrievalSystem import  *
 import PySimpleGUI as sg
+import os
 
 
-file_name = 'corpus.csv'
-retrieval_model = BooleanRetrievalSystem(file_name)
-retrieval_model.read_csv()
+retrieval_model = BooleanRetrievalSystem()
+
+model_filename = 'model.pkl'
+if (os.path.exists(model_filename)) :
+    retrieval_model.read_model(model_filename)
+else :
+    file_name = 'corpus.csv'
+    retrieval_model.read_csv(file_name)
+    retrieval_model.write_model(model_filename)
 
 sg.theme('DarkAmber') 
 
